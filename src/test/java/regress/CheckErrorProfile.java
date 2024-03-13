@@ -1,0 +1,134 @@
+package regress;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Date;
+
+import static regress.checkErrorMain.alertManager;
+
+
+public class CheckErrorProfile {
+
+
+    private AndroidDriver driver;
+    private Object addAction;
+
+    @Before
+    public void beforeMethod() throws MalformedURLException {
+
+        UiAutomator2Options options = new UiAutomator2Options();
+        options
+                .setPlatformName("Android")
+                //.setPlatformVersion("13")
+                //.setDeviceName("Pixel 7")
+                .setAutomationName("UIAutomator2")
+                .setAppPackage("com.looky.app")
+                .setAppActivity("com.looky.app.MainActivity")
+                .setNewCommandTimeout(Duration.ofMillis(600000))
+                .setNoReset(true);
+
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options.setAppPackage("com.looky.app"));
+
+    }
+
+    @After
+    public void afterMethod() {
+
+        driver.quit();
+    }
+
+    @Test
+    public void ErrorProfile() throws InterruptedException, MalformedURLException {
+
+
+
+        // Переходим в MyProfile
+        if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[5]"))
+                .isEmpty()){
+            driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[5]"))
+                    .click();
+        }
+        Thread.sleep(1000);
+
+        // закрываем метро
+        // закрываем метро
+        while (!driver.findElements(new By.ByXPath("//*[contains(@text, 'Dismiss')]")).isEmpty()) {
+
+            driver.findElement(new By.ByXPath("//*[contains(@text, 'Dismiss')]")).click();
+            Thread.sleep(2000);
+        }
+        Thread.sleep(2000);
+
+        // Переходим в MyProfile
+        if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[5]"))
+                .isEmpty()){
+            driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[5]"))
+                    .click();
+        }
+        Thread.sleep(10000);
+
+
+        // Ошиюка от метро
+        if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView"))
+                .isEmpty()){
+            driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.ImageView"))
+                    .click();
+        }
+        Thread.sleep(5000);
+
+        // Убрать подсказку
+        if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[5]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup"))
+                .isEmpty()){
+            driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[5]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup"))
+                    .click();
+            Thread.sleep(2000);
+        }
+        if (driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup[1]/android.widget.ImageView"))
+                .isEmpty()){
+
+            Thread.sleep(10000);
+
+            try {
+                // Создание скриншота
+                File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+                // Сохранение скриншота в файл
+                // Генерировать уникальное имя для скриншота
+                String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+                String screenshotPath = "/Users/SergeyV/Documents/screenshot/screen_" + timestamp + ".png";
+                File destinationFile = new File(screenshotPath);
+                FileUtils.copyFile(screenshot, destinationFile);
+
+
+                myTelegramBotScreen bot = new myTelegramBotScreen();
+                String chatId = "-1001863064350"; // Укажите ID чата, куда вы хотите отправить скриншот
+
+
+                bot.sendScreenshot(chatId, screenshotPath);
+                alertManager.sendAlert();
+
+                // Далее можно отправить этот скриншот в Телеграм или выполнить другие действия по необходимости
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            driver.findElement(new By.ByXPath("MarkerOfSheet"))
+                    .click();
+        }
+
+    }
+}
