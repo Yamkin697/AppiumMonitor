@@ -37,8 +37,8 @@ public class myTelegramBotLog extends TelegramLongPollingBot {
         myTelegramBotLog bot = new myTelegramBotLog();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = "-1001863064350";
-        String filePath = "/Users/SergeyV/Documents/log.txt"; // Замените на путь к вашему файлу
+        String chatId = "-1002050408046";
+        String filePath = "D:\\!Alex\\bot_logs\\log.txt"; // Замените на путь к вашему файлу
 
         bot.uploadFileToTelegram(chatId, filePath);
     }

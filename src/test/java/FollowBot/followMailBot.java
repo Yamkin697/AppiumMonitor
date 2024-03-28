@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import regress.ArgumentManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -35,10 +36,16 @@ public class followMailBot {
                 .setAppPackage("com.android.chrome")
                 .setAppActivity("com.google.android.apps.chrome.Main")
                 .setNewCommandTimeout(Duration.ofMillis(600000))
+                .setLocale("RU")
                 .setNoReset(true);
+        String avd = ArgumentManager.getAvd();
+        String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
+        if(avd != null){
+            options.setAvd(avd);
+        }
 
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options.setAppPackage("com.android.chrome"));
+        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"), options.setAppPackage("com.android.chrome"));
     }
 
     @After
@@ -48,7 +55,7 @@ public class followMailBot {
 
     @Test
     public void Test() throws InterruptedException, MalformedURLException, IOException {
-        String filePath = "/Users/SergeyV/Documents/mails.txt"; // Путь к вашему файлу с учетными данными
+        String filePath = "D:\\!Alex\\bot_logs\\mails.txt"; // Путь к вашему файлу с учетными данными
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;

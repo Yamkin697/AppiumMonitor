@@ -37,9 +37,14 @@ public class testing {
                 .setAutomationName("UIAutomator2")
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
+                .setLocale("RU")
                 .setNoReset(true);
-
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"),
+        String avd = ArgumentManager.getAvd();
+        String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
+        if(avd != null){
+            options.setAvd(avd);
+        }
+        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"),
                 options.setAppPackage("com.looky.app"));
 
     }

@@ -35,7 +35,7 @@ public class myTelegramBotMessenger extends TelegramLongPollingBot  {
         myTelegramBotMessenger bot = new myTelegramBotMessenger();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = "-1001863064350";
+        String chatId = "-1002050408046";
 
         bot.sendErrorMessageToChannel(chatId);
     }

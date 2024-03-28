@@ -30,6 +30,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import regress.ArgumentManager;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
@@ -47,8 +48,12 @@ public class createPost {
         options.setDeviceName("a010c185")
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
+                .setLocale("RU")
                 .setNoReset(true);
-
+        String avd = ArgumentManager.getAvd();
+        if(avd != null){
+            options.setAvd(avd);
+        }
         driver = new AndroidDriver(new URL("http://localhost:4723/"), options.setAppPackage("com.looky.app"));
 
     }

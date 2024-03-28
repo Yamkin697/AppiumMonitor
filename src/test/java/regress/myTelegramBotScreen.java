@@ -39,9 +39,9 @@ public class myTelegramBotScreen extends TelegramLongPollingBot {
         myTelegramBotScreen bot = new myTelegramBotScreen();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = "-1001863064350";
+        String chatId = "-1002050408046";
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String screenshotPath = "/Users/SergeyV/Documents/screenshot_" + timestamp + ".png";
+        String screenshotPath = "D:\\!Alex\\bot_logs\\screenshot_" + timestamp + ".png";
 
         bot.sendScreenshot(chatId, screenshotPath);
         //alertManager.sendAlert();

@@ -38,9 +38,15 @@ public class checkErrorMessenger {
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
                 .setNewCommandTimeout(Duration.ofMillis(600000))
+                .setLocale("RU")
                 .setNoReset(true);
+        String avd = ArgumentManager.getAvd();
+        String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
+        if(avd != null){
+            options.setAvd(avd);
+        }
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"), options.setAppPackage("com.looky.app"));
 
     }
 
@@ -83,13 +89,13 @@ public class checkErrorMessenger {
                 // Сохранение скриншота в файл
                 // Генерировать уникальное имя для скриншота
                 String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-                String screenshotPath = "/Users/SergeyV/Documents/screenshot/screen_" + timestamp + ".png";
+                String screenshotPath = "D:\\!Alex\\bot_logs\\screenshot\\screen_" + timestamp + ".png";
                 File destinationFile = new File(screenshotPath);
                 FileUtils.copyFile(screenshot, destinationFile);
 
 
                 myTelegramBotScreen bot = new myTelegramBotScreen();
-                String chatId = "-1001863064350"; // Укажите ID чата, куда вы хотите отправить скриншот
+                String chatId = "-1002050408046"; // Укажите ID чата, куда вы хотите отправить скриншот
 
 
                 bot.sendScreenshot(chatId, screenshotPath);
