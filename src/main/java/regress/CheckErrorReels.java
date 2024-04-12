@@ -1,7 +1,6 @@
 package regress;
 
 
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.junit.After;
@@ -18,14 +17,14 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import routine.ArgumentManager;
+import routine.LogoPasses;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Date;
-
-
 
 
 public class CheckErrorReels {
@@ -49,10 +48,10 @@ public class CheckErrorReels {
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
-        if(avd != null){
+        if (avd != null) {
             options.setAvd(avd);
         }
-        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
 
     }
 
@@ -66,12 +65,11 @@ public class CheckErrorReels {
     public void ErrorReels() throws InterruptedException, MalformedURLException {
 
 
-
         Thread.sleep(2000);
 
         // убираем ошибку 504 если она есть
         if (!driver.findElements(new By.ById("com.looky.app:id/md_button_positive"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ById("com.looky.app:id/md_button_positive")).click();
             Thread.sleep(5000);
         }
@@ -86,15 +84,13 @@ public class CheckErrorReels {
         }
 
 
-
         // Ошибка от метро
         if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.ImageView"))
                     .click();
         }
         Thread.sleep(5000);
-
 
 
         // закрываем метро
@@ -106,10 +102,9 @@ public class CheckErrorReels {
         }
 
 
-
         // переходим в ленту фида
         if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[1]"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[1]"))
                     .click();
         }
@@ -117,7 +112,7 @@ public class CheckErrorReels {
 
         // переходим в плеер Reels
         if (!driver.findElements(new By.ByXPath("//*[contains(@text, 'Посмотреть другие рилс')]"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ByXPath("//*[contains(@text, 'Посмотреть другие рилс')]"))
                     .click();
         } else {
@@ -133,21 +128,21 @@ public class CheckErrorReels {
 
         WebElement ele01 = driver.findElement(By.id("android:id/content"));
 
-        int centerX = ele01.getRect().x + (ele01.getSize().width/2);
+        int centerX = ele01.getRect().x + (ele01.getSize().width / 2);
 
         double startY = ele01.getRect().y + (ele01.getSize().height * 0.9);  //чем значение выше тем сильнее свайп
 
         double endY = ele01.getRect().y + (ele01.getSize().height * 0.1);
 
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH,"finger");
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
 
         Sequence swipe = new Sequence(finger, 1);
 
-        swipe.addAction(finger.createPointerMove(Duration.ofSeconds(0),PointerInput.Origin.viewport(),centerX,(int)startY));
+        swipe.addAction(finger.createPointerMove(Duration.ofSeconds(0), PointerInput.Origin.viewport(), centerX, (int) startY));
 
         swipe.addAction(finger.createPointerDown(0));
 
-        swipe.addAction(finger.createPointerMove(Duration.ofMillis(700),PointerInput.Origin.viewport(),centerX,(int) endY));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), centerX, (int) endY));
 
         swipe.addAction(finger.createPointerUp(0));
 
@@ -155,8 +150,6 @@ public class CheckErrorReels {
 
 
         Thread.sleep(10000);
-
-
 
 
         if (!driver.findElements(new By.ByXPath("//*[contains(@text, 'Test Appium')]"))
@@ -172,13 +165,13 @@ public class CheckErrorReels {
                 // Сохранение скриншота в файл
                 // Генерировать уникальное имя для скриншота
                 String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-                String screenshotPath = "D:\\!Alex\\bot_logs\\screenshot\\screen_" + timestamp + ".png";
+                String screenshotPath = LogoPasses.Environment.screenshotPath + "screen_" + timestamp + ".png";
                 File destinationFile = new File(screenshotPath);
                 FileUtils.copyFile(screenshot, destinationFile);
 
 
                 myTelegramBotScreen bot = new myTelegramBotScreen();
-                String chatId = "-1002050408046"; // Укажите ID чата, куда вы хотите отправить скриншот
+                String chatId = LogoPasses.Telegram.chatID; // Укажите ID чата, куда вы хотите отправить скриншот
 
 
                 bot.sendScreenshot(chatId, screenshotPath);

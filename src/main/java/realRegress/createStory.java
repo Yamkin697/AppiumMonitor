@@ -1,8 +1,6 @@
 package realRegress;
 
 
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -13,10 +11,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Driver;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Random;
 
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
@@ -27,9 +22,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
-import regress.ArgumentManager;
+import routine.ArgumentManager;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 

@@ -1,10 +1,12 @@
 package regress;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.Webhook;
+import routine.LogoPasses;
 
 import java.io.File;
 
@@ -17,7 +19,7 @@ public class myTelegramBotLog extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "6392779184:AAGTCa5Y9sujF0cWjXCCLNvSi9dUHUf9V1k";
+        return LogoPasses.Telegram.botToken;
     }
 
     public void uploadFileToTelegram(String chatId, String filePath) {
@@ -37,8 +39,8 @@ public class myTelegramBotLog extends TelegramLongPollingBot {
         myTelegramBotLog bot = new myTelegramBotLog();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = "-1002050408046";
-        String filePath = "D:\\!Alex\\bot_logs\\log.txt"; // Замените на путь к вашему файлу
+        String chatId = LogoPasses.Telegram.chatID;
+        String filePath = LogoPasses.Environment.filePath + "log.txt"; // Замените на путь к вашему файлу
 
         bot.uploadFileToTelegram(chatId, filePath);
     }

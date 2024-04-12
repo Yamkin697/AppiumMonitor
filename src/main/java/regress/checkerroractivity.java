@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import routine.ArgumentManager;
+import routine.LogoPasses;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -41,10 +43,10 @@ public class checkerroractivity {
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
-        if(avd != null){
+        if (avd != null) {
             options.setAvd(avd);
         }
-        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
 
     }
 
@@ -58,7 +60,6 @@ public class checkerroractivity {
     public void activity() throws InterruptedException, MalformedURLException {
 
 
-
         // Закрываем подсказку
         if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.TextView"))
                 .isEmpty()) {
@@ -70,7 +71,7 @@ public class checkerroractivity {
 
         // Переходим в Activity
         if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[4]"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[4]"))
                     .click();
         }
@@ -79,14 +80,14 @@ public class checkerroractivity {
         // закрываем метро
         while (!driver.findElements(new By.ByXPath("//*[contains(@text, 'Dismiss')]")).isEmpty()) {
 
-                driver.findElement(new By.ByXPath("//*[contains(@text, 'Dismiss')]")).click();
-                Thread.sleep(2000);
-            }
+            driver.findElement(new By.ByXPath("//*[contains(@text, 'Dismiss')]")).click();
             Thread.sleep(2000);
+        }
+        Thread.sleep(2000);
 
 
         if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[4]"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.View/android.view.View[4]"))
                     .click();
         }
@@ -94,7 +95,7 @@ public class checkerroractivity {
 
         // Ошиюка от метро
         if (!driver.findElements(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView"))
-                .isEmpty()){
+                .isEmpty()) {
             driver.findElement(new By.ByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.ImageView"))
                     .click();
         }
@@ -109,7 +110,7 @@ public class checkerroractivity {
         Thread.sleep(10000);
 
         if (driver.findElements(new By.ByXPath("//*[contains(@text, 'Кошелек')]"))
-                .isEmpty()){
+                .isEmpty()) {
 
             Thread.sleep(10000);
 
@@ -120,13 +121,13 @@ public class checkerroractivity {
                 // Сохранение скриншота в файл
                 // Генерировать уникальное имя для скриншота
                 String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-                String screenshotPath = "D:\\!Alex\\bot_logs\\screenshot\\screen_" + timestamp + ".png";
+                String screenshotPath = LogoPasses.Environment.screenshotPath + "screen_" + timestamp + ".png";
                 File destinationFile = new File(screenshotPath);
                 FileUtils.copyFile(screenshot, destinationFile);
 
 
                 myTelegramBotScreen bot = new myTelegramBotScreen();
-                String chatId = "-1002050408046"; // Укажите ID чата, куда вы хотите отправить скриншот
+                String chatId = LogoPasses.Telegram.chatID; // Укажите ID чата, куда вы хотите отправить скриншот
 
 
                 bot.sendScreenshot(chatId, screenshotPath);

@@ -1,5 +1,6 @@
 package regress;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -18,7 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.net.URLEncoder;
-import org.apache.commons.cli.*;
+
+import routine.ArgumentManager;
+import routine.LogoPasses;
 
 
 public class checkErrorMain {
@@ -28,9 +31,9 @@ public class checkErrorMain {
             String url = "https://smsc.ru/sys/send.php";
 
             // Параметры запроса
-            String login = "looky_app";
-            String password = "N.UVvfn@ekwB8wk";
-            String phones = "79858699964,79167478505,79962291428,79858039795";
+            String login = LogoPasses.SMSCenter.login;
+            String password = LogoPasses.SMSCenter.password;
+            String phones = LogoPasses.SMSCenter.phones;
             //String message = "Java бот упал замертво АХТУНГ. Перезагрузите его у него лапки";
             String call = "1";
 
@@ -128,8 +131,9 @@ public class checkErrorMain {
         ArgumentManager.setArguments(args);
         ArgumentManager.parseArgs();
         System.err.println("Бот запущен");
+
         MyTelegrammBotOK teleg = new MyTelegrammBotOK();
-        String chatId = "-1002050408046";
+        String chatId = LogoPasses.Telegram.chatID;
         teleg.sendErrorMessageToChannel(chatId);
         while (true) {
             // Запускаем набор тестов
@@ -178,7 +182,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegramBotFeed teleg = new myTelegramBotFeed();
-                String chatId = "-1002050408046";
+                String chatId = LogoPasses.Telegram.chatID;
 
 
                 teleg.sendErrorMessageToChannel(chatId);
@@ -202,7 +206,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegramBotDiscovery teleg = new myTelegramBotDiscovery();
-                String chatId = "-1002050408046";
+                String chatId = LogoPasses.Telegram.chatID;
                 teleg.sendErrorMessageToChannel(chatId);
             }
         }
@@ -222,7 +226,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegrammBotActivity teleg = new myTelegrammBotActivity();
-                String chatId = "-1002050408046";
+                String chatId = LogoPasses.Telegram.chatID;
                 teleg.sendErrorMessageToChannel(chatId);
             }
         }
@@ -242,7 +246,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegrammBotMyProfile teleg = new myTelegrammBotMyProfile();
-                String chatId = "-1002050408046";
+                String chatId = LogoPasses.Telegram.chatID;
 
                 teleg.sendErrorMessageToChannel(chatId);
 
@@ -265,7 +269,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegramBotMessenger teleg = new myTelegramBotMessenger();
-                String chatId = "-1002050408046";
+                String chatId = LogoPasses.Telegram.chatID;
 
                 teleg.sendErrorMessageToChannel(chatId);
 
@@ -286,7 +290,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 MyTelegrammBotReels teleg = new MyTelegrammBotReels();
-                String chatId = "-1002050408046";
+                String chatId = LogoPasses.Telegram.chatID;
 
                 teleg.sendErrorMessageToChannel(chatId);
 
@@ -306,8 +310,8 @@ public class checkErrorMain {
 
             myTelegramBotLog bot = new myTelegramBotLog();
 
-            String chatId = "-1002050408046";
-            String filePath = "D:\\!Alex\\bot_logs\\log.txt"; // Замените на путь к вашему файлу
+            String chatId = LogoPasses.Telegram.chatID;
+            String filePath = LogoPasses.Environment.filePath + "log.txt"; // Замените на путь к вашему файлу
 
             bot.uploadFileToTelegram(chatId, filePath);
         }

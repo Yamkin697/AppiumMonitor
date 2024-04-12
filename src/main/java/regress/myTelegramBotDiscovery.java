@@ -4,6 +4,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import routine.LogoPasses;
 
 public class myTelegramBotDiscovery extends TelegramLongPollingBot {
 
@@ -14,7 +15,7 @@ public class myTelegramBotDiscovery extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "6392779184:AAGTCa5Y9sujF0cWjXCCLNvSi9dUHUf9V1k";
+        return LogoPasses.Telegram.botToken;
     }
 
     public void sendErrorMessageToChannel(String chatId) {
@@ -33,13 +34,10 @@ public class myTelegramBotDiscovery extends TelegramLongPollingBot {
         myTelegramBotDiscovery bot = new myTelegramBotDiscovery();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = "-1002050408046";
+        String chatId = LogoPasses.Telegram.chatID;
 
         bot.sendErrorMessageToChannel(chatId);
     }
-
-
-
 
 
     @Override

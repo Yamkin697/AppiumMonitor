@@ -5,21 +5,13 @@ import io.appium.java_client.android.AndroidDriver;
 
 import io.appium.java_client.android.options.UiAutomator2Options;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import routine.ArgumentManager;
 
 public class testing {
     private AndroidDriver driver;
@@ -41,10 +33,10 @@ public class testing {
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
-        if(avd != null){
+        if (avd != null) {
             options.setAvd(avd);
         }
-        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"),
+        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"),
                 options.setAppPackage("com.looky.app"));
 
     }
@@ -61,7 +53,6 @@ public class testing {
 
     @Test
     public void a_Test() throws InterruptedException, MalformedURLException {
-
 
 
     }

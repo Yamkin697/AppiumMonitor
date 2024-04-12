@@ -1,9 +1,11 @@
 package regress;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import routine.LogoPasses;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -20,7 +22,7 @@ public class myTelegramBotScreen extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "6392779184:AAGTCa5Y9sujF0cWjXCCLNvSi9dUHUf9V1k";
+        return LogoPasses.Telegram.botToken;
     }
 
     public void sendScreenshot(String chatId, String filePath) {
@@ -39,9 +41,9 @@ public class myTelegramBotScreen extends TelegramLongPollingBot {
         myTelegramBotScreen bot = new myTelegramBotScreen();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = "-1002050408046";
+        String chatId = LogoPasses.Telegram.chatID;
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String screenshotPath = "D:\\!Alex\\bot_logs\\screenshot_" + timestamp + ".png";
+        String screenshotPath = LogoPasses.Environment.screenshotPath + "screenshot_" + timestamp + ".png";
 
         bot.sendScreenshot(chatId, screenshotPath);
         //alertManager.sendAlert();

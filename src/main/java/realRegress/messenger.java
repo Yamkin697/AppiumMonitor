@@ -11,7 +11,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Driver;
 import java.time.Duration;
 import java.util.Random;
 
@@ -24,7 +23,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import regress.ArgumentManager;
+import routine.ArgumentManager;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 

@@ -1,9 +1,10 @@
-package regress;
+package routine;
 import org.apache.commons.cli.*;
 public class ArgumentManager {
     private static String[] arguments;
     private static String avd;
     private static int appiumPort = 4723;
+    private static boolean call = true;
     public static String[] getArguments() {
         return arguments;
     }
@@ -26,8 +27,15 @@ public class ArgumentManager {
                 .hasArg()
                 .build();
 
+        Option noCall = Option.builder()
+                .longOpt("no-call")
+                .desc("No call")
+                .hasArg()
+                .build();
+
         options.addOption(avdOption);
         options.addOption(appiumPortOption);
+        options.addOption(noCall);
 
         CommandLineParser parser = new DefaultParser();
 
@@ -38,6 +46,9 @@ public class ArgumentManager {
             }
             if (cmd.hasOption("appium-port")) {
                 appiumPort = Integer.parseInt(cmd.getOptionValue("appium-port"));
+            }
+            if (cmd.hasOption("no-call")) {
+                call = false;
             }
         } catch (ParseException e) {
             System.err.println("Error parsing command line arguments: " + e.getMessage());

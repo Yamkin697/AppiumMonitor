@@ -17,8 +17,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import regress.ArgumentManager;
+import routine.ArgumentManager;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
