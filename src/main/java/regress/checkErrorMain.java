@@ -159,7 +159,7 @@ public class checkErrorMain {
         // Здесь запускаем набор тестов с использованием JUnit
 
         // чистим фал с логами
-        String fileName = "D:\\!Alex\\bot_logs\\log.txt";
+        String fileName = LogoPasses.Environment.filePath + "log.txt";
 
         try (BufferedWriter bf = Files.newBufferedWriter(Path.of(fileName),
                 StandardOpenOption.TRUNCATE_EXISTING)) {
