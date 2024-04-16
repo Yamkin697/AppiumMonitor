@@ -38,7 +38,7 @@ public class followMailBot {
                 .setAppPackage("com.android.chrome")
                 .setAppActivity("com.google.android.apps.chrome.Main")
                 .setNewCommandTimeout(Duration.ofMillis(600000))
-                .setLocale("RU")
+                //.setLocale("RU")
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());

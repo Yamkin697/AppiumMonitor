@@ -35,7 +35,7 @@ public class discovery {
         options.setDeviceName("a010c185")
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
-                .setLocale("RU")
+                //.setLocale("RU")
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         if(avd != null){

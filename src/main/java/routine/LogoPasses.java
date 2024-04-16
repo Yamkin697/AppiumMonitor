@@ -16,7 +16,9 @@ public class LogoPasses {
     public class Environment{
         public static String filePath = dotenv.get("ENVIRONMENT_FILE_PATH");
         public static String screenshotPath = dotenv.get("ENVIRONMENT_SCREENSHOT_PATH");
-
+    }
+    public class Device{
+        public static String deviceName = "";
     }
 
 }

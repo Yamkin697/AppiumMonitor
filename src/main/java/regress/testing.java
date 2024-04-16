@@ -29,7 +29,7 @@ public class testing {
                 .setAutomationName("UIAutomator2")
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
-                .setLocale("RU")
+                //.setLocale("RU")
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());

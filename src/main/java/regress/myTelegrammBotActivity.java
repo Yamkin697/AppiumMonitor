@@ -21,7 +21,7 @@ public class myTelegrammBotActivity extends TelegramLongPollingBot {
     public void sendErrorMessageToChannel(String chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId); // Указываем ID чата, куда отправить сообщение
-        message.setText("Ошибка в Activity"); // Текст сообщения
+        message.setText("Ошибка в Activity\nDevice: "+LogoPasses.Device.deviceName); // Текст сообщения
 
         try {
             execute(message); // Отправляем сообщение

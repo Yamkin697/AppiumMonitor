@@ -38,7 +38,7 @@ public class CheckErrorDiscovery {
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
                 .setNewCommandTimeout(Duration.ofMillis(600000))
-                .setLocale("RU")
+                //.setLocale("RU")
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());

@@ -237,7 +237,7 @@ public class checkErrorMain {
 
 
             for (Failure failure : result4.getFailures()) {
-                System.err.println("Ошибка в MyProfile \n \n" + failure.toString());
+                System.err.println("Ошибка в MyProfile \n \n" + failure.toString()+"\nDevice: "+LogoPasses.Device.deviceName);
                 if (checkAppiumErrors(failure.toString())) {
                     sendExitMessageAndDie();
                 }
