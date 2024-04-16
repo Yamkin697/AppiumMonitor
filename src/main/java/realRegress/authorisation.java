@@ -11,6 +11,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -57,7 +58,7 @@ public class authorisation {
 
         //Переход по ссылке "Have a questions or need help?"
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -120,7 +121,7 @@ public class authorisation {
         // услоаие
         // не авторизован
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -151,7 +152,7 @@ public class authorisation {
         // услоаие
         // не авторизован
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);

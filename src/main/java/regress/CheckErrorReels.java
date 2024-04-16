@@ -3,6 +3,7 @@ package regress;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -181,7 +182,7 @@ public class CheckErrorReels {
                 e.printStackTrace();
             }
 
-            driver.closeApp();
+            driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 
             driver.findElement(new By.ByXPath("MarkerOfSheet"))
                     .click();
@@ -189,6 +190,6 @@ public class CheckErrorReels {
 
         }
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
     }
 }

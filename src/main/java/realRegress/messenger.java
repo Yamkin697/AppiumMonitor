@@ -14,6 +14,7 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.Random;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.junit.After;
@@ -61,7 +62,7 @@ public class messenger {
 
         // Переход в мессенджер
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -98,7 +99,7 @@ public class messenger {
 
         // создание чата из мессенджера
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(2000);
@@ -219,7 +220,7 @@ public class messenger {
 
         // Создание чата (в мессенджере уже есть ранее созданные чаты)
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -319,7 +320,7 @@ public class messenger {
 
         // Смена профиля в мессенджере
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -368,7 +369,7 @@ public class messenger {
 
         // Сообщение со ссылкой
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);

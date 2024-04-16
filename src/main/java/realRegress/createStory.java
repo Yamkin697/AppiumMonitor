@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.junit.After;
@@ -60,7 +61,7 @@ public class createStory {
 
         //cмена профиля
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -84,7 +85,7 @@ public class createStory {
 
         //Создание истории с 1 фото без редактирования
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -129,7 +130,7 @@ public class createStory {
         driver.findElement(new By.ByXPath("//*[contains(@text, 'Опубликовать')]")).click();
         Thread.sleep(10000);
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(10000);
@@ -145,7 +146,7 @@ public class createStory {
 
         //Создание истории с несколькими видео без редактирования
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -219,7 +220,7 @@ public class createStory {
 
         //Создание истории с несколькими видео без редактирования
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -381,7 +382,7 @@ public class createStory {
 
         //Создание истории с видео без редактирования
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -466,7 +467,7 @@ public class createStory {
 
         // cмена профиля
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);

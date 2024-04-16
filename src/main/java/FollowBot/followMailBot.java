@@ -2,6 +2,7 @@ package FollowBot;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import org.junit.After;
 import org.junit.Before;
 
@@ -202,7 +203,7 @@ public class followMailBot {
             driver.findElement(new By.ByXPath("//*[contains(@text, 'OK')]"))
                     .click();
 
-            driver.closeApp();
+            driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 
         }
     }

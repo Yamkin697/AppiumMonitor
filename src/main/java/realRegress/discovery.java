@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import org.junit.After;
@@ -56,7 +57,7 @@ public class discovery {
 
         //проверяем работаспособность дискаревери
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);

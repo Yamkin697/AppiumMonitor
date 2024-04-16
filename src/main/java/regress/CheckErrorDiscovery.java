@@ -61,7 +61,7 @@ public class CheckErrorDiscovery {
 
 
 //
-//        driver.closeApp();
+//        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 //        driver.launchApp();
 
 //        Thread.sleep(5000);

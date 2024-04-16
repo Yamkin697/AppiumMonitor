@@ -63,7 +63,7 @@ public class checkErrorMessenger {
 
 
 //
-//        driver.closeApp();
+//        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 //        driver.launchApp();
 
 //        Thread.sleep(5000);
@@ -107,12 +107,12 @@ public class checkErrorMessenger {
                 e.printStackTrace();
             }
 
-            //driver.closeApp();
+            //driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 
             driver.findElement(new By.ByXPath("MarkerOfSheet"))
                     .click();
         }
-        //driver.closeApp();
+        //driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 
     }
 }

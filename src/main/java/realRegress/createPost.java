@@ -10,6 +10,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -55,7 +56,7 @@ public class createPost {
 
         //cмена профиля
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -105,7 +106,7 @@ public class createPost {
     @Test
     public void b_CreatePostWithMenshensHeshtag() throws InterruptedException, MalformedURLException {
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);
@@ -295,7 +296,7 @@ public class createPost {
 
         //cмена профиля
 
-        driver.closeApp();
+        driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         driver.launchApp();
 
         Thread.sleep(5000);

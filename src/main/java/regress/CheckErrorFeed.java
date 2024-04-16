@@ -70,7 +70,7 @@ public class CheckErrorFeed {
     @Test
     public void a_Test() throws InterruptedException, MalformedURLException {
 
-        //   driver.closeApp();
+        //   driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
         //driver.launchApp();
 
         Thread.sleep(30000);
@@ -271,7 +271,7 @@ public class CheckErrorFeed {
 //        if (driver.findElements(new By.ByXPath("//*[contains(@text, 'Sign In with Google')]"))
 //                .isEmpty()){
 //
-//            driver.closeApp();
+//            driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
 //            driver.launchApp();
 //
 //            Thread.sleep(20000);
@@ -294,7 +294,7 @@ public class CheckErrorFeed {
         if (driver.findElements(new By.ById("com.android.permissioncontroller:id/permission_allow_button"))
                 .isEmpty()){
 
-            driver.closeApp();
+            driver.terminateApp((String) driver.getCapabilities().getCapability(AndroidMobileCapabilityType.APP_PACKAGE));
             driver.launchApp();
 
             Thread.sleep(20000);
