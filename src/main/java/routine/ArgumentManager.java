@@ -43,6 +43,7 @@ public class ArgumentManager {
             CommandLine cmd = parser.parse(options, args);
             if (cmd.hasOption("avd")) {
                 avd = cmd.getOptionValue("avd");
+                LogoPasses.Device.deviceName = avd;
             }
             if (cmd.hasOption("appium-port")) {
                 appiumPort = Integer.parseInt(cmd.getOptionValue("appium-port"));
