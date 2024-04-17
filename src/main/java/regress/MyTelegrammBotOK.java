@@ -23,7 +23,7 @@ public class MyTelegrammBotOK extends TelegramLongPollingBot {
     public void sendErrorMessageToChannel(String chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(chatId); // Указываем ID чата, куда отправить сообщение
-        message.setText("<БОТ>\nJava бот запущен"); // Текст сообщения
+        message.setText("<БОТ>\nJava бот запущен\n"+LogoPasses.Device.deviceName); // Текст сообщения
         try {
             execute(message); // Отправляем сообщение
         } catch (TelegramApiException e) {
