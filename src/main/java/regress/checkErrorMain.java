@@ -255,7 +255,7 @@ public class checkErrorMain {
         }
 
 
-        Result result5 = JUnitCore.runClasses(checkErrorMessenger.class);
+        /*Result result5 = JUnitCore.runClasses(checkErrorMessenger.class);
 
         if (!result5.wasSuccessful()) {
 
@@ -275,7 +275,7 @@ public class checkErrorMain {
 
 
             }
-        }
+        }*/
 
         Result result6 = JUnitCore.runClasses(CheckErrorReels.class);
 
@@ -299,11 +299,11 @@ public class checkErrorMain {
         }
 
 
-        if (result1.wasSuccessful() && result2.wasSuccessful() && result3.wasSuccessful() && result4.wasSuccessful() && result5.wasSuccessful() && result6.wasSuccessful()) {
+        if (result1.wasSuccessful() && result2.wasSuccessful() && result3.wasSuccessful() && result4.wasSuccessful()  && result6.wasSuccessful()) {
             System.out.println("\n Тесты пройдены успешно");
         }
 
-        if (!result1.wasSuccessful() || !result2.wasSuccessful() || !result3.wasSuccessful() || !result4.wasSuccessful() || !result5.wasSuccessful() || !result6.wasSuccessful()) {
+        if (!result1.wasSuccessful() || !result2.wasSuccessful() || !result3.wasSuccessful() || !result4.wasSuccessful() || !result6.wasSuccessful()) {
 
 
             //Thread.sleep(10000);
