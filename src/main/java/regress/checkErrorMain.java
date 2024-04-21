@@ -1,82 +1,84 @@
 package regress;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import routine.ArgumentManager;
+import routine.Secrets;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.net.URLEncoder;
-
-import routine.ArgumentManager;
-import routine.LogoPasses;
 
 
 public class checkErrorMain {
     public static void sendCall(String message) {
-        try {
-            // Замените ваш URL на тот, который вы предоставили
-            String url = "https://smsc.ru/sys/send.php";
+        if (ArgumentManager.getCall()) {
+            try {
+                // Замените ваш URL на тот, который вы предоставили
+                String url = "https://smsc.ru/sys/send.php";
 
-            // Параметры запроса
-            String login = LogoPasses.SMSCenter.login;
-            String password = LogoPasses.SMSCenter.password;
-            String phones = LogoPasses.SMSCenter.phones;
-            //String message = "Java бот упал замертво АХТУНГ. Перезагрузите его у него лапки";
-            String call = "1";
+                // Параметры запроса
+                String login = Secrets.SMSCenter.login;
+                String password = Secrets.SMSCenter.password;
+                String phones = Secrets.SMSCenter.phones;
+                //String message = "Java бот упал замертво АХТУНГ. Перезагрузите его у него лапки";
+                String call = "1";
 
-            // Кодирование параметров запроса
-            String encodedMessage = URLEncoder.encode(message, "UTF-8");
+                // Кодирование параметров запроса
+                String encodedMessage = URLEncoder.encode(message, StandardCharsets.UTF_8);
 
-            // Составление строки параметров
-            String parameters = String.format("login=%s&psw=%s&phones=%s&mes=%s&call=%s",
-                    login, password, phones, encodedMessage, call);
+                // Составление строки параметров
+                String parameters = String.format("login=%s&psw=%s&phones=%s&mes=%s&call=%s",
+                        login, password, phones, encodedMessage, call);
 
-            // Формирование полного URL с параметрами
-            String fullUrl = url + "?" + parameters;
+                // Формирование полного URL с параметрами
+                String fullUrl = url + "?" + parameters;
 
-            // Создание объекта URL
-            URL obj = new URL(fullUrl);
+                // Создание объекта URL
+                URL obj = new URL(fullUrl);
 
-            // Создание объекта HttpURLConnection
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+                // Создание объекта HttpURLConnection
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-            // Установка метода запроса
-            con.setRequestMethod("GET");
+                // Установка метода запроса
+                con.setRequestMethod("GET");
 
-            // Получение ответа от сервера
-            int responseCode = con.getResponseCode();
-            System.out.println("Отправлен GET-запрос по URL: " + fullUrl);
-            System.out.println("Код ответа: " + responseCode);
+                // Получение ответа от сервера
+                int responseCode = con.getResponseCode();
+                System.out.println("Отправлен GET-запрос по URL: " + fullUrl);
+                System.out.println("Код ответа: " + responseCode);
 
-            // Чтение ответа
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                // Чтение ответа
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+
+                // Вывод ответа сервера
+                System.out.println("Ответ сервера: " + response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            in.close();
-
-            // Вывод ответа сервера
-            System.out.println("Ответ сервера: " + response.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Звонки отключены");
         }
+
     }
 
     public static boolean checkAppiumErrors(String failureLog) {
@@ -100,12 +102,12 @@ public class checkErrorMain {
         MyTelegrammBotAHTUNG teleg2 = new MyTelegrammBotAHTUNG();
         String chatId2 = "-1002050408046";
         teleg2.sendErrorMessageToChannel(chatId2);
-        //sendCall("Java бот упал замертво АХТУНГ. Перезагрузите его у него лапки");
+        sendCall("Java бот упал замертво АХТУНГ. Перезагрузите его у него лапки");
         System.exit(1);
     }
 
     public static class AlertManager {
-        private List<Long> alertTimes;
+        private final List<Long> alertTimes;
 
         public AlertManager() {
             this.alertTimes = new ArrayList<>();
@@ -116,11 +118,11 @@ public class checkErrorMain {
             alertTimes.add(currentTime);
 
             // Очищаем список от алертов, которые были отправлены более 30 минут назад
-            alertTimes.removeIf(time -> currentTime - time > 1800);
+            alertTimes.removeIf(time -> currentTime - time > Secrets.SMSCenter.minutesToCall * 60);
 
             // Проверяем условие 3 и более алертов за 30 минут
-            if (alertTimes.size() >= 3) {
-                //sendCall("Вероятно, что-то упало на проде. Больше трёх алертов от java бота за последние 30 минут");
+            if (alertTimes.size() >= 4) {
+                sendCall("Вероятно, что-то упало на проде. Больше трёх алертов от java бота за последние 30 минут");
             }
         }
     }
@@ -133,7 +135,7 @@ public class checkErrorMain {
         System.err.println("Бот запущен");
 
         MyTelegrammBotOK teleg = new MyTelegrammBotOK();
-        String chatId = LogoPasses.Telegram.chatID;
+        String chatId = Secrets.Telegram.chatID;
         teleg.sendErrorMessageToChannel(chatId);
         while (true) {
             // Запускаем набор тестов
@@ -159,7 +161,7 @@ public class checkErrorMain {
         // Здесь запускаем набор тестов с использованием JUnit
 
         // чистим фал с логами
-        String fileName = LogoPasses.Environment.filePath + "log.txt";
+        String fileName = Secrets.Environment.filePath + "log.txt";
 
         try (BufferedWriter bf = Files.newBufferedWriter(Path.of(fileName),
                 StandardOpenOption.TRUNCATE_EXISTING)) {
@@ -182,7 +184,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegramBotFeed teleg = new myTelegramBotFeed();
-                String chatId = LogoPasses.Telegram.chatID;
+                String chatId = Secrets.Telegram.chatID;
 
 
                 teleg.sendErrorMessageToChannel(chatId);
@@ -206,7 +208,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegramBotDiscovery teleg = new myTelegramBotDiscovery();
-                String chatId = LogoPasses.Telegram.chatID;
+                String chatId = Secrets.Telegram.chatID;
                 teleg.sendErrorMessageToChannel(chatId);
             }
         }
@@ -226,7 +228,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegrammBotActivity teleg = new myTelegrammBotActivity();
-                String chatId = LogoPasses.Telegram.chatID;
+                String chatId = Secrets.Telegram.chatID;
                 teleg.sendErrorMessageToChannel(chatId);
             }
         }
@@ -237,7 +239,7 @@ public class checkErrorMain {
 
 
             for (Failure failure : result4.getFailures()) {
-                System.err.println("Ошибка в MyProfile \n \n" + failure.toString()+"\nDevice: "+LogoPasses.Device.deviceName);
+                System.err.println("Ошибка в MyProfile \n \n" + failure.toString() + "\nDevice: " + Secrets.Device.deviceName);
                 if (checkAppiumErrors(failure.toString())) {
                     sendExitMessageAndDie();
                 }
@@ -246,7 +248,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 myTelegrammBotMyProfile teleg = new myTelegrammBotMyProfile();
-                String chatId = LogoPasses.Telegram.chatID;
+                String chatId = Secrets.Telegram.chatID;
 
                 teleg.sendErrorMessageToChannel(chatId);
 
@@ -290,7 +292,7 @@ public class checkErrorMain {
                 // Запуск MyTelrgramBot
 
                 MyTelegrammBotReels teleg = new MyTelegrammBotReels();
-                String chatId = LogoPasses.Telegram.chatID;
+                String chatId = Secrets.Telegram.chatID;
 
                 teleg.sendErrorMessageToChannel(chatId);
 
@@ -299,7 +301,7 @@ public class checkErrorMain {
         }
 
 
-        if (result1.wasSuccessful() && result2.wasSuccessful() && result3.wasSuccessful() && result4.wasSuccessful()  && result6.wasSuccessful()) {
+        if (result1.wasSuccessful() && result2.wasSuccessful() && result3.wasSuccessful() && result4.wasSuccessful() && result6.wasSuccessful()) {
             System.out.println("\n Тесты пройдены успешно");
         }
 
@@ -310,8 +312,8 @@ public class checkErrorMain {
 
             myTelegramBotLog bot = new myTelegramBotLog();
 
-            String chatId = LogoPasses.Telegram.chatID;
-            String filePath = LogoPasses.Environment.filePath + "log.txt"; // Замените на путь к вашему файлу
+            String chatId = Secrets.Telegram.chatID;
+            String filePath = Secrets.Environment.filePath + "log.txt"; // Замените на путь к вашему файлу
 
             bot.uploadFileToTelegram(chatId, filePath);
         }

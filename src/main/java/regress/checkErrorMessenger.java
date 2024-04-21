@@ -1,4 +1,3 @@
-
 package regress;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -11,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import routine.ArgumentManager;
-import routine.LogoPasses;
+import routine.Secrets;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -91,13 +90,13 @@ public class checkErrorMessenger {
                 // Сохранение скриншота в файл
                 // Генерировать уникальное имя для скриншота
                 String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-                String screenshotPath = LogoPasses.Environment.screenshotPath + "screen_" + timestamp + ".png";
+                String screenshotPath = Secrets.Environment.screenshotPath + "screen_" + timestamp + ".png";
                 File destinationFile = new File(screenshotPath);
                 FileUtils.copyFile(screenshot, destinationFile);
 
 
                 myTelegramBotScreen bot = new myTelegramBotScreen();
-                String chatId = LogoPasses.Telegram.chatID; // Укажите ID чата, куда вы хотите отправить скриншот
+                String chatId = Secrets.Telegram.chatID; // Укажите ID чата, куда вы хотите отправить скриншот
 
 
                 bot.sendScreenshot(chatId, screenshotPath);

@@ -5,8 +5,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.generics.Webhook;
-import routine.LogoPasses;
+import routine.Secrets;
 
 import java.io.File;
 
@@ -19,7 +18,7 @@ public class myTelegramBotLog extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return LogoPasses.Telegram.botToken;
+        return Secrets.Telegram.botToken;
     }
 
     public void uploadFileToTelegram(String chatId, String filePath) {
@@ -39,8 +38,8 @@ public class myTelegramBotLog extends TelegramLongPollingBot {
         myTelegramBotLog bot = new myTelegramBotLog();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = LogoPasses.Telegram.chatID;
-        String filePath = LogoPasses.Environment.filePath + "log.txt"; // Замените на путь к вашему файлу
+        String chatId = Secrets.Telegram.chatID;
+        String filePath = Secrets.Environment.filePath + "log.txt"; // Замените на путь к вашему файлу
 
         bot.uploadFileToTelegram(chatId, filePath);
     }

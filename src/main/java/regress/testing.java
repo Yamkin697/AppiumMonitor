@@ -2,16 +2,14 @@ package regress;
 
 
 import io.appium.java_client.android.AndroidDriver;
-
 import io.appium.java_client.android.options.UiAutomator2Options;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import routine.ArgumentManager;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class testing {
     private AndroidDriver driver;

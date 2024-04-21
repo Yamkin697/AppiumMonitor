@@ -5,13 +5,11 @@ import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import routine.LogoPasses;
+import routine.Secrets;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static regress.checkErrorMain.alertManager;
 
 public class myTelegramBotScreen extends TelegramLongPollingBot {
 
@@ -22,7 +20,7 @@ public class myTelegramBotScreen extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return LogoPasses.Telegram.botToken;
+        return Secrets.Telegram.botToken;
     }
 
     public void sendScreenshot(String chatId, String filePath) {
@@ -41,9 +39,9 @@ public class myTelegramBotScreen extends TelegramLongPollingBot {
         myTelegramBotScreen bot = new myTelegramBotScreen();
 
         // Здесь вы должны указать ID чата (например, ваш собственный ID или ID пользователя "kornejjj")
-        String chatId = LogoPasses.Telegram.chatID;
+        String chatId = Secrets.Telegram.chatID;
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String screenshotPath = LogoPasses.Environment.screenshotPath + "screenshot_" + timestamp + ".png";
+        String screenshotPath = Secrets.Environment.screenshotPath + "screenshot_" + timestamp + ".png";
 
         bot.sendScreenshot(chatId, screenshotPath);
         //alertManager.sendAlert();

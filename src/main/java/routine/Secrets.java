@@ -2,12 +2,13 @@ package routine;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
-public class LogoPasses {
+public class Secrets {
     static Dotenv dotenv = Dotenv.load();
     public class SMSCenter{
         public static String login = dotenv.get("SMSC_LOGIN");
         public static String password = dotenv.get("SMSC_PASS");
         public static String phones = dotenv.get("SMSC_PHONES");
+        public static int minutesToCall = Integer.parseInt(dotenv.get("MINUTES_TO_CALL"));
     }
     public class Telegram{
         public static String botToken = dotenv.get("TELEGRAM_BOT_TOKEN");

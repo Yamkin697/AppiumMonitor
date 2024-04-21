@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import routine.ArgumentManager;
-import routine.LogoPasses;
+import routine.Secrets;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -57,7 +57,7 @@ public class followMailBot {
 
     @Test
     public void Test() throws InterruptedException, MalformedURLException, IOException {
-        String filePath = LogoPasses.Environment.filePath+"mails.txt"; // Путь к вашему файлу с учетными данными
+        String filePath = Secrets.Environment.filePath+"mails.txt"; // Путь к вашему файлу с учетными данными
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
