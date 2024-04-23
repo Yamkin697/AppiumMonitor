@@ -135,9 +135,9 @@ public class checkErrorMain {
         AppiumServiceBuilder builder = new AppiumServiceBuilder ();
         builder.withIPAddress ("127.0.0.1")
                 .usingPort (ArgumentManager.getAppiumPort())
-                .withAppiumJS (
-                        new File (Secrets.Appium.appiumJS))
-                .usingDriverExecutable (new File(Secrets.Appium.node))
+                //.withAppiumJS (
+                //        new File (Secrets.Appium.appiumJS))
+                //.usingDriverExecutable (new File(Secrets.Appium.node))
                 .withArgument (BASEPATH, "/")
                 .withArgument (GeneralServerFlag.SESSION_OVERRIDE)
                 .withArgument (GeneralServerFlag.LOG_LEVEL, "debug");
