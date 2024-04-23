@@ -133,8 +133,8 @@ public class checkErrorMain {
     public static AppiumDriverLocalService service;
     public static void startServer () {
         AppiumServiceBuilder builder = new AppiumServiceBuilder ();
-        builder.withIPAddress ("127.0.0.1")
-                .usingPort (ArgumentManager.getAppiumPort())
+        //builder.withIPAddress ("127.0.0.1")
+        builder.usingPort (ArgumentManager.getAppiumPort())
                 //.withAppiumJS (
                 //        new File (Secrets.Appium.appiumJS))
                 //.usingDriverExecutable (new File(Secrets.Appium.node))
