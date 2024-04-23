@@ -20,6 +20,7 @@ import java.time.Duration;
 import java.util.Date;
 
 import static regress.checkErrorMain.alertManager;
+import static regress.checkErrorMain.service;
 
 
 public class CheckErrorProfile {
@@ -47,8 +48,8 @@ public class CheckErrorProfile {
         if (avd != null) {
             options.setAvd(avd);
         }
-        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
-
+        //driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
     }
 
     @After

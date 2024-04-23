@@ -1,15 +1,15 @@
 package regress;
 
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import routine.ArgumentManager;
 import routine.Secrets;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -19,6 +19,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+
+import static io.appium.java_client.service.local.flags.GeneralServerFlag.BASEPATH;
 
 
 public class checkErrorMain {
@@ -128,10 +130,26 @@ public class checkErrorMain {
     }
 
     public static AlertManager alertManager = new AlertManager();
+    public static AppiumDriverLocalService service;
+    public static void startServer () {
+        AppiumServiceBuilder builder = new AppiumServiceBuilder ();
+        builder.withIPAddress ("127.0.0.1")
+                .usingPort (ArgumentManager.getAppiumPort())
+                .withAppiumJS (
+                        new File (Secrets.Appium.appiumJS))
+                .usingDriverExecutable (new File(Secrets.Appium.node))
+                .withArgument (BASEPATH, "/")
+                .withArgument (GeneralServerFlag.SESSION_OVERRIDE)
+                .withArgument (GeneralServerFlag.LOG_LEVEL, "debug");
 
+        service = AppiumDriverLocalService.buildService(builder);
+        service.start ();
+    }
     public static void main(String[] args) throws InterruptedException {
+
         ArgumentManager.setArguments(args);
         ArgumentManager.parseArgs();
+        startServer();
         System.err.println("Бот запущен");
 
         MyTelegrammBotOK teleg = new MyTelegrammBotOK();

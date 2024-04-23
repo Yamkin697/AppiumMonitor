@@ -26,6 +26,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static regress.checkErrorMain.service;
+
 
 public class CheckErrorReels {
 
@@ -51,8 +53,8 @@ public class CheckErrorReels {
         if (avd != null) {
             options.setAvd(avd);
         }
-        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
-
+        //driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
     }
 
     @After

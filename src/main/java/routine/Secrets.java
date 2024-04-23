@@ -21,5 +21,9 @@ public class Secrets {
     public class Device{
         public static String deviceName = "default";
     }
+    public class Appium{
+        public static String appiumJS = dotenv.get("APPIUM_JS");
+        public static String node = dotenv.get("NODE");
+    }
 
 }

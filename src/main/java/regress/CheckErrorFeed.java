@@ -22,6 +22,7 @@ import java.time.Duration;
 import java.util.Date;
 
 import static regress.checkErrorMain.alertManager;
+import static regress.checkErrorMain.service;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
@@ -51,7 +52,8 @@ public class CheckErrorFeed {
             options.setAvd(avd);
         }
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
+        //driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
 
     }
 
