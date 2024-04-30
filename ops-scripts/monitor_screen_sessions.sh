@@ -3,6 +3,7 @@
 # Function to count the number of screen sessions
 count_screen_sessions() {
     screen_count=$(ls /run/screen/S-lookyerrorbot/ | wc -l)
+    echo "$screen_count"
 }
 
 # Function to gracefully terminate all processes
