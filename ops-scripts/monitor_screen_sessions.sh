@@ -2,7 +2,7 @@
 
 # Function to count the number of screen sessions
 count_screen_sessions() {
-    screen_count=$(screen -ls | grep -c "Socket")
+    screen_count=$(screen -ls | tail -n 1| awk '{print $1}')
     echo "$screen_count"
 }
 
