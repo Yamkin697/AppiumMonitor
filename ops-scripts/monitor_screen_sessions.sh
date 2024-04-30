@@ -25,8 +25,8 @@ check_and_reboot() {
     screen_count=$(count_screen_sessions)
     if [ "$screen_count" -lt 1 ]; then
         echo "Only $screen_count screen sessions found. Terminating processes and rebooting the computer..."
-        terminate_processes
-        /sbin/shutdown -r 1
+        #terminate_processes
+        bash -c '/sbin/shutdown -r +1'
     else
         echo "Number of screen sessions is sufficient ($screen_count). No action required."
     fi
