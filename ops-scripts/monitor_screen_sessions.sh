@@ -2,8 +2,13 @@
 
 # Function to count the number of screen sessions
 count_screen_sessions() {
-    screen_count=$(screen -ls | tail -n 1| awk '{print $1}')
-    echo "$screen_count"
+    screen_output=$(screen -ls | tail -n 1)
+    screen_count=$(echo "$screen_output" | awk '{print $1}')
+    if [[ "$screen_count" =~ ^[0-9]+$ ]]; then
+        echo "$screen_count"
+    else
+        echo "0"
+    fi
 }
 
 # Function to gracefully terminate all processes
@@ -21,8 +26,7 @@ check_and_reboot() {
     if [ "$screen_count" -lt 1 ]; then
         echo "Only $screen_count screen sessions found. Terminating processes and rebooting the computer..."
         terminate_processes
-        bash -c '/sbin/shutdown -r 1'
-        sleep 90
+        /sbin/shutdown -r 1
     else
         echo "Number of screen sessions is sufficient ($screen_count). No action required."
     fi
