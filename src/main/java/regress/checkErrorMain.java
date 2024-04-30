@@ -125,6 +125,7 @@ public class checkErrorMain {
             // Проверяем условие 3 и более алертов за 30 минут
             if (alertTimes.size() >= 4) {
                 sendCall("Вероятно, что-то упало на проде. Больше трёх алертов от java бота за последние 30 минут");
+                sendExitMessageAndDie();
             }
         }
     }
