@@ -2,13 +2,7 @@
 
 # Function to count the number of screen sessions
 count_screen_sessions() {
-    screen_output=$(screen -ls | tail -n 1)
-    screen_count=$(echo "$screen_output" | awk '{print $1}')
-    if [[ "$screen_count" =~ ^[0-9]+$ ]]; then
-        echo "$screen_count"
-    else
-        echo "0"
-    fi
+    screen_count=$(ls /run/screen/S-lookyerrorbot/ | wc -l)
 }
 
 # Function to gracefully terminate all processes
