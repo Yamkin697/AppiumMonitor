@@ -6,6 +6,8 @@ public class ArgumentManager {
     private static int appiumPort = 4723;
     private static boolean call = true;
     private static int adbPort = 0;
+    private static String adbDeviceName;
+
 
     public static int getAdbPort() {
         return adbPort;
@@ -18,6 +20,11 @@ public class ArgumentManager {
     public static void setArguments(String[] arguments) {
         ArgumentManager.arguments = arguments;
     }
+
+    public static String getAdbDeviceName() {
+        return adbDeviceName;
+    }
+
     public static void parseArgs() {
         String[] args = arguments;
         Options options = new Options();
@@ -44,6 +51,11 @@ public class ArgumentManager {
                 .desc("Adb port")
                 .hasArg()
                 .build();
+        Option adbDeviceOption = Option.builder()
+                .longOpt("adb-device")
+                .desc("Adb device")
+                .hasArg()
+                .build();
 
         options.addOption(avdOption);
         options.addOption(appiumPortOption);
@@ -67,6 +79,9 @@ public class ArgumentManager {
             }
             if (cmd.hasOption("adb-port")) {
                 adbPort = Integer.parseInt(cmd.getOptionValue("adb-port"));
+            }
+            if (cmd.hasOption("adb-device")) {
+                adbDeviceName = cmd.getOptionValue("adb-device");
             }
         } catch (ParseException e) {
             System.err.println("Error parsing command line arguments: " + e.getMessage());
