@@ -53,6 +53,10 @@ public class CheckErrorReels {
         if (avd != null) {
             options.setAvd(avd);
         }
+        int adb = ArgumentManager.getAdbPort();
+        if (adb != 0){
+            options.setAdbPort(adb);
+        }
         //driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
         driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
     }

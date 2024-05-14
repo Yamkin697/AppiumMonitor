@@ -5,6 +5,13 @@ public class ArgumentManager {
     private static String avd;
     private static int appiumPort = 4723;
     private static boolean call = true;
+    private static int adbPort = 0;
+
+    public static int getAdbPort() {
+        return adbPort;
+    }
+
+
     public static String[] getArguments() {
         return arguments;
     }
@@ -32,10 +39,17 @@ public class ArgumentManager {
                 .desc("No call")
                 .hasArg()
                 .build();
+        Option adbPortOption = Option.builder()
+                .longOpt("adb-port")
+                .desc("Adb port")
+                .hasArg()
+                .build();
 
         options.addOption(avdOption);
         options.addOption(appiumPortOption);
         options.addOption(noCall);
+        options.addOption(adbPortOption);
+
 
         CommandLineParser parser = new DefaultParser();
 
@@ -50,6 +64,9 @@ public class ArgumentManager {
             }
             if (cmd.hasOption("no-call")) {
                 call = false;
+            }
+            if (cmd.hasOption("adb-port")) {
+                adbPort = Integer.parseInt(cmd.getOptionValue("adb-port"));
             }
         } catch (ParseException e) {
             System.err.println("Error parsing command line arguments: " + e.getMessage());
