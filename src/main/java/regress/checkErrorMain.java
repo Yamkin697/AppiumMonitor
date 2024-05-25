@@ -150,7 +150,7 @@ public class checkErrorMain {
 
         ArgumentManager.setArguments(args);
         ArgumentManager.parseArgs();
-        startServer();
+        //startServer();
         System.err.println("Бот запущен");
 
         MyTelegrammBotOK teleg = new MyTelegrammBotOK();

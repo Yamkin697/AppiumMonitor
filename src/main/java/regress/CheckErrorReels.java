@@ -46,7 +46,8 @@ public class CheckErrorReels {
                 .setAppPackage("com.looky.app")
                 .setAppActivity("com.looky.app.MainActivity")
                 .setNewCommandTimeout(Duration.ofMillis(600000))
-                //.setLocale("RU")
+                .setLocale("RU")
+                .setLanguage("ru")
                 .setNoReset(true);
         String avd = ArgumentManager.getAvd();
         String appiumport = Integer.toString(ArgumentManager.getAppiumPort());
@@ -61,8 +62,8 @@ public class CheckErrorReels {
         if (adbDevice != null){
             options.setCapability("udid", adbDevice);
         }
-        //driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
-        driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
+        //driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
     }
 
     @After

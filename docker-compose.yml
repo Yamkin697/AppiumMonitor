@@ -1,0 +1,8 @@
+version: "3"
+services:
+  monitor:
+    build: .
+    container_name: monitor
+networks:
+  my_network:
+    driver: bridge
