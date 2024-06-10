@@ -80,7 +80,7 @@ public class ArgumentManager {
             if (cmd.hasOption("adb-port")) {
                 adbPort = Integer.parseInt(cmd.getOptionValue("adb-port"));
             }
-            if (cmd.hasOption("adb-device")) {
+            if (cmd.hasOption("adb-device")) { // тут можно указывать не только имя, но и IP
                 adbDeviceName = cmd.getOptionValue("adb-device");
             }
         } catch (ParseException e) {

@@ -24,11 +24,15 @@ FROM openjdk:23-ea-18-jdk-slim-bullseye
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
+RUN mkdir "bot_logs"
+
+RUN mkdir "bot_logs/screenshots"
+
 # Копируем jar файл из стадии сборки в финальный образ
 COPY --from=build /app/target/*.jar app.jar
 COPY .env .env
 # Определяем точку входа для запуска jar файла
-ENTRYPOINT ["java", "-jar", "app.jar", "-appium-port", "1234", "-no-call", "1"]
+ENTRYPOINT ["sleep", "200", ";", "java", "-jar", "app.jar", "-appium-port", "1234", "-no-call", "1"]
 
 # Открываем порт (если ваше приложение использует какой-то порт)
 EXPOSE 8080

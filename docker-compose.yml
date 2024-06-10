@@ -3,6 +3,20 @@ services:
   monitor:
     build: .
     container_name: monitor
+    networks:
+      - my_network
+
+  android_emulator:
+    image: emu_api30
+    container_name: android_emulator
+    networks:
+      - my_network
+    volumes:
+      - type: volume
+        source: emu_api30_data
+        target: /home/androidusr
+
+
 networks:
   my_network:
     driver: bridge
