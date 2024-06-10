@@ -35,4 +35,3 @@ COPY .env .env
 ENTRYPOINT ["sleep", "200", ";", "java", "-jar", "app.jar", "-appium-port", "1234", "-no-call", "1"]
 
 # Открываем порт (если ваше приложение использует какой-то порт)
-EXPOSE 8080

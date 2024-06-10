@@ -7,14 +7,22 @@ services:
       - my_network
 
   android_emulator:
-    image: emu_api30
-    container_name: android_emulator
+    image: budtmo/docker-android:emulator_11.0
+    container_name: android-container
+    environment:
+      - EMULATOR_DEVICE="Samsung Galaxy S10"
+      - WEB_VNC=true
+      - APPIUM=true
     networks:
       - my_network
     volumes:
       - type: volume
         source: emu_api30_data
         target: /home/androidusr
+    devices:
+      - /dev/kvm
+    ports:
+      - 6080:6080
 
 
 networks:
