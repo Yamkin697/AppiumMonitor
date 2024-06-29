@@ -38,4 +38,15 @@ echo "Device booted successfully."
 # Install the APK
 adb -s ${ANDROID_CONTAINER_NAME}:5555 install ${APK_PATH}
 
-echo "APK installation complete" > /shared/apk-installation-complete
+#echo "APK installation complete" 
+#touch /shared/apk-installation-complete
+if [ $? -eq 0 ]; then
+  echo "APK installed successfully"
+  touch /shared/apk-installation-complete
+  echo "Signal file created at /shared/apk-installation-complete"
+else
+  echo "Failed to install APK"
+fi
+
+# Keep the container running
+tail -f /dev/null

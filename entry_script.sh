@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Output the current date and time
+# Выполнение основного процесса (установка APK)
 echo "Starting APK installation at $(date)"
-
-# Run the APK installation script
 /install-apk.sh
 
-# Check if the APK installation was successful
+# Проверка успешности установки APK
 if [ $? -eq 0 ]; then
   echo "APK installation complete at $(date)"
 else
@@ -14,7 +12,6 @@ else
   exit 1
 fi
 
-# Keep the container running
+# Оставить контейнер работающим
 echo "Keeping the container running..."
 tail -f /dev/null
-

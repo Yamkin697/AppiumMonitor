@@ -20,12 +20,12 @@ FROM openjdk:23-ea-18-jdk-slim-bullseye
 WORKDIR /app
 
 RUN set -x ;\
-    mkdir -p /app/bot_logs/screenshots
+    mkdir -p /app/bot_logs/screenshots;\
+	touch /app/bot_logs/log.txt
 
 # Копируем файлы
 COPY --from=build /app/target/untitled2-1.0-SNAPSHOT.jar .
 
-COPY ./wait-for-apk-install.sh .
 COPY .env .
 
 RUN set -x; \
@@ -33,4 +33,4 @@ RUN set -x; \
 	chmod +x /app/untitled2-1.0-SNAPSHOT.jar
 
 # Команда для запуска скрипта и JAR файла
-CMD ["sh", "-c", "while [ ! -f /shared/apk-installation-complete ]; do sleep 5; done && java -jar /app/untitled2-1.0-SNAPSHOT.jar -appium-port 4723 -no-call 1"]
+CMD ["java", "-jar", "/app/untitled2-1.0-SNAPSHOT.jar", "-appium-port", "4723", "-no-call", "1"]

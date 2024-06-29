@@ -28,10 +28,11 @@ services:
     networks:
       - my-network
 
+
   apk-installer:
     build:
       context: .
-      dockerfile: Dockerfile.apk
+      dockerfile: Dockerfile.app
     container_name: apk-installer
     depends_on:
       - android
@@ -43,11 +44,11 @@ services:
     networks:
       - my-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4723/wd/hub/status"]
+      test: ["CMD", "adb", "-s", "android:5555", "shell", "getprop", "sys.boot_completed"]
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 300s
     volumes:
       - shared_volume:/shared
 
