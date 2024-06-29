@@ -100,7 +100,7 @@ public class checkErrorMain {
     }
 
     public static void sendExitMessageAndDie() {
-        System.err.println("Java приложение упало замертво АХТУНГ");
+        //System.err.println("Java приложение упало замертво АХТУНГ");
         MyTelegrammBotAHTUNG teleg2 = new MyTelegrammBotAHTUNG();
         String chatId2 = "-1002050408046";
         teleg2.sendErrorMessageToChannel(chatId2);
@@ -151,7 +151,7 @@ public class checkErrorMain {
         ArgumentManager.setArguments(args);
         ArgumentManager.parseArgs();
         //startServer();
-        System.err.println("Бот запущен");
+        //System.err.println("Бот запущен");
 
         MyTelegrammBotOK teleg = new MyTelegrammBotOK();
         String chatId = Secrets.Telegram.chatID;
