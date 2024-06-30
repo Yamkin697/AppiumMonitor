@@ -61,7 +61,7 @@ public class CheckErrorFeed {
             options.setCapability("udid", adbDevice);
         }
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:" + appiumport + "/"), options.setAppPackage("com.looky.app"));
+        driver = new AndroidDriver(new URL("http://" + ArgumentManager.getAppiumAddress() + ":" + appiumport + "/"), options.setAppPackage("com.looky.app"));
         //driver = new AndroidDriver(service.getUrl(), options.setAppPackage("com.looky.app"));
 
     }

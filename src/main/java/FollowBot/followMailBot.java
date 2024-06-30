@@ -47,7 +47,7 @@ public class followMailBot {
         }
 
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:"+appiumport+"/"), options.setAppPackage("com.android.chrome"));
+        driver = new AndroidDriver(new URL("http://" + ArgumentManager.getAppiumAddress() + ":" + appiumport+"/"), options.setAppPackage("com.android.chrome"));
     }
 
     @After
