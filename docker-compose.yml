@@ -53,10 +53,9 @@ services:
   monitor:
     build: .
     container_name: monitor
-    depends_on:
-      apk-installer:
-        condition: service_healthy
-        
+    #depends_on:
+     # apk-installer:
+      #  condition: service_healthy   
     #command: /bin/bash -c "while ! docker logs apk-installer 2>&1 | grep -q 'APK installation complete'; do sleep 5; done; echo 'APK installation complete. Starting monitor container.'"
     ports:
       - "5555:5555" # Добавил порт 
