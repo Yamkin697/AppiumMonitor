@@ -33,4 +33,4 @@ RUN set -x; \
 	chmod +x /app/untitled2-1.0-SNAPSHOT.jar
 
 # Команда для запуска скрипта и JAR файла
-CMD ["java", "-jar", "/app/untitled2-1.0-SNAPSHOT.jar", "-appium-port", "4723", "-no-call", "1"]
+CMD ["java", "-jar", "/app/untitled2-1.0-SNAPSHOT.jar", "-appium-port", "4723", "-no-call", "1", "-adb-device", "android:5554"]
