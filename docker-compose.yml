@@ -20,8 +20,6 @@ services:
       - "6080:6080"
       - "4723:4723"
       - "9005:9000"
-      - "5554:5554"
-      - "5555:5555"
     devices:
       - "/dev/kvm:/dev/kvm"
     restart: always
@@ -44,7 +42,7 @@ services:
     networks:
       - my-network
     healthcheck:
-      test: ["CMD", "adb", "-s", "android:5555", "shell", "getprop", "sys.boot_completed"]
+      test: ["CMD-SHELL", "adb -s emulator-5554 shell getprop sys.boot_completed | grep 1"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -58,8 +56,12 @@ services:
     depends_on:
       apk-installer:
         condition: service_healthy
+        
+    #command: /bin/bash -c "while ! docker logs apk-installer 2>&1 | grep -q 'APK installation complete'; do sleep 5; done; echo 'APK installation complete. Starting monitor container.'"
+    ports:
+      - "5555:5555" # Добавил порт 
     env_file:
-      - .env  # Добавляем ссылку на файл .env
+      - .env  
     networks:
       - my-network
     volumes:

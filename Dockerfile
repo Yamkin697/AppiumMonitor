@@ -27,10 +27,12 @@ RUN set -x ;\
 COPY --from=build /app/target/untitled2-1.0-SNAPSHOT.jar .
 
 COPY .env .
+#COPY wait-for-apk-install.sh /app/wait-for-apk-install.sh
+
 
 RUN set -x; \
 	chmod +x /app/wait-for-apk-install.sh; \
 	chmod +x /app/untitled2-1.0-SNAPSHOT.jar
 
 # Команда для запуска скрипта и JAR файла
-CMD ["java", "-jar", "/app/untitled2-1.0-SNAPSHOT.jar", "-appium-address", "android", "-appium-port", "4723", "-no-call", "1", "-adb-device", "android:5555"]
+CMD ["java", "-jar", "/app/untitled2-1.0-SNAPSHOT.jar", "-appium-address", "android", "-appium-port", "4723", "-no-call", "1", "-adb-device", "emulator-5554"]
