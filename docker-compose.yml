@@ -20,6 +20,7 @@ services:
       - "6080:6080"
       - "4723:4723"
       - "9005:9000"
+      - "5555:5555"
     devices:
       - "/dev/kvm:/dev/kvm"
     restart: always
@@ -57,8 +58,8 @@ services:
      # apk-installer:
       #  condition: service_healthy   
     #command: /bin/bash -c "while ! docker logs apk-installer 2>&1 | grep -q 'APK installation complete'; do sleep 5; done; echo 'APK installation complete. Starting monitor container.'"
-    ports:
-      - "5555:5555" # Добавил порт 
+    #ports:
+    #  - "5555:5555" # Добавил порт 
     env_file:
       - .env  
     networks:
