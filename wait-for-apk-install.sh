@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Название контейнера
-APK_INSTALLER_CONTAINER_NAME=$1
-LOG_STRING="APK installation complete"
+# Путь к сигнальному файлу
+SIGNAL_FILE_PATH="/shared/apk-installation-complete"
 
 echo "Waiting for APK installation to complete..."
 
-while ! docker logs $APK_INSTALLER_CONTAINER_NAME 2>&1 | grep -q "$LOG_STRING"; do
+# Ожидание создания сигнального файла
+while [ ! -f "$SIGNAL_FILE_PATH" ]; do
   sleep 5
 done
 
-echo "APK installation complete. Starting monitor container."
+echo "APK installation complete. Signal file detected at $SIGNAL_FILE_PATH"
+

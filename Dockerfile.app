@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN apt-get update && apt-get install -y adb netcat-traditional
 
-COPY install-apk.sh /install-apk.sh
+COPY ./install-apk.sh /install-apk.sh
 COPY ./test_app/looky.apk /apk/test_app/looky.apk
 RUN chmod +x /install-apk.sh
 

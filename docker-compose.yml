@@ -43,11 +43,11 @@ services:
     networks:
       - my-network
     healthcheck:
-      test: ["CMD-SHELL", "adb -s emulator-5554 shell getprop sys.boot_completed | grep 1"]
+      test: ["CMD-SHELL", "[ -f /shared/apk-installation-complete ]"]
       interval: 30s
       timeout: 10s
-      retries: 5
-      start_period: 300s
+      retries: 15
+      start_period: 440s
     volumes:
       - shared_volume:/shared
 
@@ -55,9 +55,9 @@ services:
     build: .
     container_name: monitor
     #depends_on:
-     # apk-installer:
-      #  condition: service_healthy   
-    #command: /bin/bash -c "while ! docker logs apk-installer 2>&1 | grep -q 'APK installation complete'; do sleep 5; done; echo 'APK installation complete. Starting monitor container.'"
+    #  apk-installer:
+    #    condition: service_healthy   
+    command: /bin/bash -c "sleep 300 && java -jar /app/untitled2-1.0-SNAPSHOT.jar -appium-address android -appium-port 4723 -no-call 1 -adb-device emulator-5554"
     #ports:
     #  - "5555:5555" # Добавил порт 
     env_file:
