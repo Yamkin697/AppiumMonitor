@@ -1,30 +1,77 @@
-version: "3"
+
 services:
+  android:
+    build:
+      context: .
+      dockerfile: Dockerfile.android
+    container_name: android
+    privileged: true
+    environment:
+      - EMULATOR_DEVICE=Samsung Galaxy S10
+      - WEB_VNC=true
+      - WEB_LOG=true
+      - WEB_LOG_PORT=9000
+      - ENV_LOG_PATH=/var/log/
+      - APPIUM=true
+    volumes:
+      - data:/home/androidusr
+      - root:/root
+    ports:
+      - "6080:6080"
+      - "4723:4723"
+      - "9005:9000"
+      - "5555:5555"
+    devices:
+      - "/dev/kvm:/dev/kvm"
+    restart: always
+    networks:
+      - my-network
+
+
+  apk-installer:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: apk-installer
+    depends_on:
+      - android
+    environment:
+      - ANDROID_CONTAINER_NAME=android
+      - APK_PATH=/apk/test_app/looky.apk
+    entrypoint: ["/bin/bash", "-c", "/install-apk.sh"]
+    restart: "no"
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /shared/apk-installation-complete ]"]
+      interval: 30s
+      timeout: 10s
+      retries: 15
+      start_period: 440s
+    volumes:
+      - shared_volume:/shared
+
   monitor:
     build: .
     container_name: monitor
+    #depends_on:
+    #  apk-installer:
+    #    condition: service_healthy   
+    command: /bin/bash -c "sleep 300 && java -jar /app/untitled2-1.0-SNAPSHOT.jar -appium-address android -appium-port 4723 -no-call 1 -adb-device emulator-5554"
+    #ports:
+    #  - "5555:5555" # Добавил порт 
+    env_file:
+      - .env  
     networks:
-      - my_network
-
-  android_emulator:
-    image: budtmo/docker-android:emulator_11.0
-    container_name: android-container
-    environment:
-      - EMULATOR_DEVICE="Samsung Galaxy S10"
-      - WEB_VNC=true
-      - APPIUM=true
-    networks:
-      - my_network
+      - my-network
     volumes:
-      - type: volume
-        source: emu_api30_data
-        target: /home/androidusr
-    devices:
-      - /dev/kvm
-    ports:
-      - 6080:6080
-
+      - shared_volume:/shared
 
 networks:
-  my_network:
+  my-network:
     driver: bridge
+
+volumes:
+  data:
+  root:
+  shared_volume:

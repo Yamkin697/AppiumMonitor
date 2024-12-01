@@ -1,0 +1,22 @@
+FROM budtmo/docker-android:emulator_14.0
+
+# Смотреть https://github.com/budtmo/docker-android/issues/251#issuecomment-2156730473
+# Там написано как ставить apk через adb
+USER root
+COPY ./run.sh /run.sh
+RUN chmod +x /run.sh
+
+RUN echo 'root:x:0:0:root:/root:/bin/bash' >> /etc/passwd
+
+USER androidusr
+
+RUN mkdir -p /home/androidusr/logs && \
+    chmod -R 777 /home/androidusr/logs
+
+WORKDIR /home/androidusr/app
+
+ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["/run.sh"]
+
+
+

@@ -7,8 +7,6 @@ public class ArgumentManager {
     private static boolean call = true;
     private static int adbPort = 0;
     private static String adbDeviceName;
-    private static String appiumAddress = "127.0.0.1";
-
 
 
     public static int getAdbPort() {
@@ -26,7 +24,6 @@ public class ArgumentManager {
     public static String getAdbDeviceName() {
         return adbDeviceName;
     }
-    public static String getAppiumAddress() { return appiumAddress; }
 
     public static void parseArgs() {
         String[] args = arguments;
@@ -59,18 +56,11 @@ public class ArgumentManager {
                 .desc("Adb device")
                 .hasArg()
                 .build();
-        Option appiumAddressOption = Option.builder()
-                .longOpt("appium-address")
-                .desc("Appium address")
-                .hasArg()
-                .build();
 
         options.addOption(avdOption);
         options.addOption(appiumPortOption);
         options.addOption(noCall);
         options.addOption(adbPortOption);
-        options.addOption(adbDeviceOption);
-        options.addOption(appiumAddressOption);
 
 
         CommandLineParser parser = new DefaultParser();
@@ -92,9 +82,6 @@ public class ArgumentManager {
             }
             if (cmd.hasOption("adb-device")) { // тут можно указывать не только имя, но и IP
                 adbDeviceName = cmd.getOptionValue("adb-device");
-            }
-            if (cmd.hasOption("appium-address")) {
-                appiumAddress = cmd.getOptionValue("appium-address");
             }
         } catch (ParseException e) {
             System.err.println("Error parsing command line arguments: " + e.getMessage());
